@@ -55,3 +55,28 @@ const solution = nums =>
   nums !== null && nums !== undefined && nums.length > 0
     ? nums.sort((a, b) => a - b)
     : [];
+
+// Given an array of integers.
+
+// Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers.
+
+// If the input array is empty or null, return an empty array:
+
+// C#/Java: new int[] {} / new int[0];
+// C++: std::vector<int>();
+// JavaScript/CoffeeScript/TypeScript/PHP/Haskell: [];
+// Rust: Vec::<i32>::new();
+// ATTENTION!
+// The passed array should NOT be changed. Read more here.
+
+// For example:
+
+// input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]
+// return [10, -65].
+
+const countPositivesSumNegatives = input => {
+  if (!input || !input.length) return [];
+  let positives = input.filter(curr => curr > 0).length;
+  let negatives = input.reduce((sum, curr) => (curr <= 0 ? sum + curr : 0), 0);
+  return [positives, negatives];
+};
