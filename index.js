@@ -123,3 +123,115 @@ const stringy = size => {
   }
   return str.join("");
 };
+
+//The Deca Tree
+// In the Deca Forest, grow the Deca Trees.
+
+// On each Deca Tree, a trunk has 10 branches.
+
+// On each branch, there are 10 twigs.
+
+// On each twig, there are 10 leaves.
+
+// Unfortunately, the Deca Forest is becoming wildly overgrown and is endangering the local wildlife. You must add methods to the tree object so that the woodcutter can remove parts of a tree as follows, where n is a positive integer:
+
+// chopTrunk(n) will remove n trunks
+// chopBranch(n) will remove n branches
+// chopTwig(n) will remove n twigs
+// chopLeaf(n) will remove n leaves
+
+// Make sure that when you remove any part of the tree, you also remove all the smaller parts attached to it. e.g. if you remove a twig you must also remove 10 leaves from the tree object. The woodcutter's aim is to trim back this forest, so he will try to remove as much of the tree as possible each time he chops.
+
+// Conversely, when you remove a smaller part, you do not need to remove the larger parts it is attached to - for example you could pick off all the leaves from a tree and the number of twigs, branches and trunks would be unaffected.
+
+// The tree cannot have a negative number of trunks, branches, leaves or twigs. That would be highly unnatural.
+
+// You must also add a method 'describe' that allows the Deca Forest tourguides to describe each tree. It should describe the tree in the following format:
+
+// "This tree has a trunks, b branches, c twigs and d leaves."
+
+// (where a, b, c and d are integer values)
+
+// Your methods will be tested for trees with varying numbers of trunks and for removing random numbers of leaves, twigs, branches and trunks. The test will use only positive integers for these values.
+
+// For more information on JS objects, take a look here
+
+function tree(trunks) {
+  this.trunks = trunks;
+  this.branches = trunks * 10;
+  this.twigs = trunks * 100;
+  this.leaves = trunks * 1000;
+
+  this.chopTrunk = n => {
+    this.trunks -= n;
+    this.branches -= n * 10;
+    this.twigs -= n * 100;
+    this.leaves -= n * 1000;
+    this.trunks >= 0 ? this.trunks : (this.trunks = 0);
+    this.branches >= 0 ? this.branches : (this.branches = 0);
+    this.twigs >= 0 ? this.twigs : (this.twigs = 0);
+    this.leaves >= 0 ? this.leaves : (this.leaves = 0);
+  };
+
+  this.chopBranch = n => {
+    this.branches -= n;
+    this.twigs -= n * 10;
+    this.leaves -= n * 100;
+
+    this.branches >= 0 ? this.branches : (this.branches = 0);
+    this.twigs >= 0 ? this.twigs : (this.twigs = 0);
+    this.leaves >= 0 ? this.leaves : (this.leaves = 0);
+  };
+  this.chopTwig = n => {
+    this.twigs -= n;
+    this.leaves -= n * 10;
+    this.twigs >= 0 ? this.twigs : (this.twigs = 0);
+    this.leaves >= 0 ? this.leaves : (this.leaves = 0);
+  };
+  this.chopLeaf = n => {
+    this.leaves -= n;
+    this.leaves >= 0 ? this.leaves : (this.leaves = 0);
+  };
+  this.describe = () =>
+    `This tree has ${this.trunks} trunks, ${this.branches} branches, ${
+      this.twigs
+    } twigs and ${this.leaves} leaves.`;
+}
+
+//Minimize _sum_Of_array_(Array_Series_#1)
+// We are given an array of even size.
+
+// Our task is to find the minimum sum which is obtained from summing each Two integers product .
+// Input :: Output Examples ::
+
+// minSum({5,4,2,3}) // return 22
+
+// Explanation ::
+// 5*2 +3*4 = 22
+
+// minSum({12,6,10,26,3,24}) // return 342
+
+// Explanation ::
+// 26*3 + 24*6 + 12*10 = 342
+
+// minSum({9,2,8,7,5,4,0,6}) // return 74
+
+// Explanation ::
+// 9*0 + 8*2 +7*4 +6*5 = 74
+// Hope you enjoy it .. Awaiting for crafting best Practice and Clever Codes ..
+
+// If you feel Enjoyed this Kata , Then How About (Monkey With) Numbers in this Series ::
+
+// Balanced Number
+
+// STRNOGN - Strong Number
+
+// Disarium Number
+
+// Jumping Number
+
+// Special Number
+
+// Enjoy Learning !!!
+
+// Wish you all the Best .. Regards
