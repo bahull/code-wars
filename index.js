@@ -235,3 +235,14 @@ function tree(trunks) {
 // Enjoy Learning !!!
 
 // Wish you all the Best .. Regards
+
+const minSum = arr => {
+  let total = 0;
+  arr.sort((a, b) => a - b);
+  while (arr.length > 0) {
+    total += arr[0] * arr[arr.length - 1];
+    arr.shift();
+    arr.pop();
+  }
+  return total;
+};
