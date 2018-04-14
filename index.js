@@ -246,3 +246,121 @@ const minSum = arr => {
   }
   return total;
 };
+
+//Convert a string to an array
+// Write a function to split a string and convert it into an array of words. For example:
+
+// "Robin Singh" ==> ["Robin", "Singh"]
+
+// "I love arrays they are my favorite" ==> ["I", "love", "arrays", "they", "are", "my", "favorite"]
+
+const stringToArray = str => str.split(" ");
+
+//Maximum_Gap_(Array_Series_#4)
+// If you complete Array_Series You know by now how to manipulate array effectively ,
+
+// If not you can take a look to get how things work :
+
+// Minimize_Sum_Of_array
+
+// Maximize_Product_Of_Array
+
+// Well , It's time to expand our series for more :
+
+// We are given an array [] of n integers,
+
+// Find The maximum difference between the successive elements in its sorted form.
+// Notes :
+
+// 1- Vector size is at least 3 .
+
+// 2- The Vector's numbers could be a mixture of positives and negatives also zeros .
+
+// 3- Repeatition of numbers in the vector could occur .
+
+// 4- The Maximum Gap is computed Regardless the sign.
+
+// If any of the previous points (Notes) is not clear , pay attention to the Examples clarify everything .
+// Input :: Output Examples ::
+
+// 1- maxGap ({13,10,5,2,9}) //return (4)
+
+// Explanation ::
+
+// THe Maximum Gap after sorting the array is (4) , the difference between (9-5 = 4 ) .
+
+// 2- maxGap ({-3,-27,-4,-2}) //return (23)
+
+// Explanation ::
+
+// The Maximum Gap after sorting the array is (23) , The difference between |-3-(-27)| = 23 , Note : Regardless the sign of negativity .
+
+// 3- maxGap ({-7,-42,-809,-14,-12}) //return (767)
+
+// Explanation ::
+
+// The Maximum Gap after sorting the array is (767) , The difference between |-809-(-42)| = 767 , Note : Regardless the sign of negativity .
+
+// 4- maxGap ({-54,37,0,64,640,0,-15}) //return (576)
+
+// Explanation ::
+
+// The Maximum Gap after sorting the array is (576) , The difference between (64-640) = 576 , Note : Regardless the sign of negativity .
+// If you feel Enjoyed this Kata , Then How About (Monkey With) Numbers in this Series ::
+
+// Balanced Number
+
+// STRNOGN - Strong Number
+
+// Disarium Number
+
+// Jumping Number
+
+// Special Number
+
+// Automorphic_Number
+
+// Hope you enjoy it .. Awaiting for crafting best Practice and Clever Codes ..
+
+// ALL Translation are Welcomed (In Any Language )
+
+// Enjoy Learning !!!
+
+// Zizou
+
+const maxGap = arr => {
+  let max = 0;
+  arr.sort((a, b) => a - b);
+  for (let i = 0; i < arr.length - 1; i++) {
+    let holder = arr[i + 1] - arr[i];
+    if (holder > max) {
+      max = holder;
+    }
+  }
+  return max;
+};
+
+// Multiply Word in String
+// You are to write an function that takes a string as it's first paramter. This string will be a string of words.
+
+// You are expected to then use the second parameter, which will be an integer, to find the corresponding word in the given string. The first word would be represented by 0.
+
+// Once you have the located string you are finally going to multiply by it the third provided paramater, which will also be an interger. You are additionally required to add a hyphen in between each word.
+
+// Example
+// modifyMultiply ("This is a string",3,5)
+
+// Should return
+
+// "string-string-string-string-string"
+
+// Since the 3rd word is 'string'(starting from 0 remember) and the third paramater indicates that it should be repeated 5 times.
+
+// Simple. Good luck.
+const modifyMultiply = (str, loc, num) => {
+  let newWord = str.split(" ")[loc];
+  let holder = [];
+  holder.length = num;
+  holder.fill(newWord);
+  return holder.join("-");
+};
