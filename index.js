@@ -364,3 +364,26 @@ const modifyMultiply = (str, loc, num) => {
   holder.fill(newWord);
   return holder.join("-");
 };
+
+//Check three and two
+// Given an array with 5 string values "a", "b" or "c" (chars in Java), check if the array contains three and two of the same values.
+
+// Examples
+// ["a", "a", "a", "b", "b"] ==> true  // 3x "a" and 2x "b"
+// ["a", "b", "c", "b", "c"] ==> false // 1x "a", 2x "b" and 2x "c"
+// ["a", "a", "a", "a", "a"] ==> false // 5x "a"
+
+const checkThreeAndTwo = arr => {
+  let countArray = [];
+  let count = 0;
+  arr.sort();
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i + 1] === arr[i]) {
+      count++;
+    } else {
+      countArray.push(count + 1);
+      count = 0;
+    }
+  }
+  return countArray.includes(2) && countArray.includes(3);
+};
