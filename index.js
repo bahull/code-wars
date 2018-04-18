@@ -424,3 +424,60 @@ const finalGrade = (grade, projs) => {
     return 0;
   }
 };
+
+//Form the minimum
+// Given a list of digits, return the smallest number that could be formed from these digits, using the digits only once (= ignore duplicates).
+
+// Note: Only positive integers will be passed to the function (> 0 ), no negatives or zeros.
+
+// Examples
+// [1, 3, 1]  ==> 13
+
+// [5, 7, 5, 9, 7]  ==> 579
+
+// [1, 9, 3, 1, 7, 4, 6, 6, 7] ==> 134679
+// ALL Translation are Welcomed (In Any Language )
+// If you Enjoyed this Kata , Then How About Monkey With Numbers in this Series:
+
+// Balanced Number
+
+// STRNOGN - Strong Number
+
+// Disarium Number
+
+// Jumping Number
+
+// Special Number
+
+// Automorphic_Number
+
+// Enjoy Learning !!!
+
+// Zizou
+
+const minValue = arr => {
+  let min1 = 0;
+  let min2 = 0;
+  let holder = [];
+  let noDupArray = arr.filter((curr, ind, arr) => arr.indexOf(curr) === ind);
+  if (noDupArray.length < 2) {
+    return noDupArray[0] || 0;
+  } else if (noDupArray.length == 2) {
+    let min1 = Math.min(...noDupArray);
+    let min2 = Math.max(...noDupArray);
+    return Number(String(min1) + String(min2));
+  } else {
+    while (noDupArray.length > 0) {
+      let min2 = Math.min(...noDupArray);
+      holder.push(min2);
+      noDupArray.splice(noDupArray.indexOf(min2), 1);
+    }
+    return Number(holder.join(""));
+  }
+};
+
+// Or
+function minValue(values) {
+  let arr = Array.from(new Set(values));
+  return parseInt(arr.sort().join(""));
+}
