@@ -481,3 +481,19 @@ function minValue(values) {
   let arr = Array.from(new Set(values));
   return parseInt(arr.sort().join(""));
 }
+
+// Abbreviate a Two Word Name
+// Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
+
+// The output should be two capital letters with a dot seperating them.
+
+// It should look like this:
+
+// Sam Harris => S.H
+
+// Patrick Feeney => P.F
+
+const abbrevName = str => {
+  let splitStr = str.split(" ");
+  return `${splitStr[0][0]}.${splitStr[1][0].toUpperCase()}`;
+};
