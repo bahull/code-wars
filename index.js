@@ -537,3 +537,113 @@ const reverseSeq = n => {
   }
   return fullArray;
 };
+
+// ===== PRINT HISTOGRAM ======
+// Given an array of integers [2, 1, 2, 101, 4, 95, 3, 250, 4, 1, 2, 2, 7, 98, 123, 99, ...]
+// Write a function (with linear run-time complexity) to print the following tabular output with ‘xxx' that resembles a histogram (your output should closely match the sample output below, including "99+" to capture the count for all numbers > 99):
+// Num | count
+//   1 | xx
+//   2 | xxxx
+//   3 | x
+//   4 | xx
+// ...
+//  98 | x
+//  99 | x
+// 99+ | xxx
+
+const exampleArray = [2, 1, 2, 101, 4, 95, 3, 250, 4, 1, 2, 2, 7, 98, 123, 99];
+
+const createHistogram = arr => {
+  let histoObject = {};
+  let histoArray = [];
+  for (let i = 1; i < 100; i++) {
+    histoObject[i] = 0;
+  }
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] >= 99 ? (histoObject[99] += 1) : (histoObject[arr[i]] += 1);
+  }
+  for (let key in histoObject) {
+    histoArray.push(
+      key.length === 1
+        ? `    ${key}  | ${"x".repeat(histoObject[key])}`
+        : `    ${key} | ${"x".repeat(histoObject[key])}`
+    );
+  }
+  histoArray.unshift("Num | count");
+  return histoArray;
+};
+
+createHistogram(exampleArray);
+
+// ===== PAIRS OF 10 ======
+// Given array of integers [1, 6, 3, 2, 5, 5, 7, 8, 4, 8, 2, 5, 9, 9, 1, ...]
+// Write a function to print out all pairs that sum to 10 with average/best O(n) or linear run-time complexity.
+// Sample output: (1,9), (1,9), (6,4), (3,7), (2,8), (2,8), (5,5), (5,5), (5,5), (8,2), (8,2), (9,1), (9,1)
+// Can print the pairs in any order, as long as numbers inside the pair respect the same order in which they appear in the original array. And it is acceptable to print each pair in a separate line.
+
+const testArray = [1, 6, 3, 2, 5, 5, 7, 8, 4, 8, 2, 5, 9, 9, 1];
+
+const pairFinder = arr => {
+  let resultsArray = [];
+  let count = 1;
+  let currentCount = 1;
+  let secCount = 0;
+  while (secCount < arr.length) {
+    if (count === arr.length - 1) {
+      if (arr[count] + arr[secCount] === 10 && secCount < count) {
+        resultsArray.push(`(${arr[secCount]}, ${arr[count]})`);
+      }
+      count = secCount;
+      secCount++;
+    }
+    if (arr[count] + arr[secCount] === 10 && secCount < count) {
+      resultsArray.push(`(${arr[secCount]}, ${arr[count]})`);
+    }
+    count++;
+  }
+  return resultsArray;
+};
+
+pairFinder(testArray);
+
+// ===== STRINGS ======
+// Write a function that takes an input string (no duplicate character) and prints out various strings as illustrated by the following sample outputs:
+// - input “ab” should print “”, “a”, “b”, “ab"
+// - input “abc” should print “”, “a”, “b”, “c”, “ab”, “ac”, “bc”, “abc"
+// - input “abcd” should print “”, “a”, “b”, “c”, “d”, “ab”, “ac”, “ad”, “bc”, “bd”, “cd”, “abc”, “abd”, “acd”, “bcd”, “abcd"
+// The function can return/print the substrings in any order (no duplicates). And it is acceptable to print each string in a separate line.
+
+let testString = "abcd";
+
+const stringSplitter = str => {
+  let resultsArray = [""];
+  let count = 0;
+  let currentCount = 0;
+  let secCount = 0;
+  let moveUp = 2;
+  let splitString = [...str];
+  while (count < splitString.length) {
+    if (count === secCount) {
+      resultsArray.push(splitString[count]);
+    } else {
+      resultsArray.push(
+        splitString[secCount] + splitString[count],
+        splitString[secCount] + splitString.slice(count).join(""),
+        splitString[secCount] +
+          splitString.slice(count, splitString.length - 1).join(""),
+        splitString.slice(secCount, moveUp).join("") +
+          splitString.slice(count + 2).join("")
+      );
+      moveUp++;
+    }
+    if (count === splitString.length - 1) {
+      currentCount++;
+      secCount = currentCount;
+      count = secCount - 1;
+    }
+    count++;
+  }
+  return new Set(resultsArray);
+};
+
+stringSplitter(testString);
