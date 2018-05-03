@@ -651,3 +651,21 @@ stringSplitter(testString);
 // Even or Odd
 // Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
 const even_or_odd = num => (num % 2 === 0 ? "Even" : "Odd");
+
+// Vowel Count
+// Return the number (count) of vowels in the given string.
+
+// We will consider a, e, i, o, and u as vowels for this Kata.
+
+// The input string will only consist of lower case letters and/or spaces.
+const getCount = str => {
+  let count = 0;
+  str = str.toUpperCase();
+  let vowels = { A: true, E: true, I: true, O: true, U: true };
+  for (let i = 0; i < str.length; i++) {
+    if (vowels[str[i]] === true) {
+      count++;
+    }
+  }
+  return count;
+};
