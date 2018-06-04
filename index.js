@@ -820,4 +820,17 @@ formatDuration(316);
 // contains a number
 // Valid passwords will only be alphanumeric characters.
 
-const validate = password => /(^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[.; ])(?=.{6,}))/.test(password);
+const validate = password =>
+  /(^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[.; ])(?=.{6,}))/.test(password);
+
+// A bomb has been set to go off! You have to find the wire and cut it in order to stop the timer. There is a global var that holds the numeric ID to which wire to cut. Find that and then you can Bomb.CutTheWire(wireKey);
+
+var wireCode = (function() {
+  for (let prop in global) {
+    if (prop.substr(0, 4) === "boom") {
+      return global[prop];
+    }
+  }
+})(global);
+
+Bomb.CutTheWire(wireCode);
